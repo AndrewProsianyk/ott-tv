@@ -1,0 +1,20 @@
+.linkBtn {
+  padding: 12px 32px;
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  background-color: #c1272d;
+  line-height: 1;
+}
+
+.linkLabel {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+  color: #fff;
+  display: flex;
+
+  align-items: center;
+}

@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.listItem {
+  color: #fff;
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+}

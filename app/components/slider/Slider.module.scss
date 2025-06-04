@@ -1,0 +1,41 @@
+.sliderContainer {
+  position: relative;
+  width: 100%;
+}
+
+.sliderWrapper {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.scrollButton {
+  position: absolute;
+  top: 26px;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  border: none;
+  width: 110px;
+  height: 315px;
+  cursor: pointer;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrollButton:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}

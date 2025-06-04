@@ -1,0 +1,31 @@
+.card {
+  width: 236px;
+  height: 347px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  transform: scale(1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  &:hover {
+    transform: scale(1.1);
+    border: 2px solid #fff;
+    border-radius: 0;
+  }
+}
+
+.image {
+  height: 315px;
+  object-fit: cover;
+}
+
+.title {
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: start;
+}

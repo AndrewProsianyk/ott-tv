@@ -1,0 +1,32 @@
+.card {
+  width: 150px;
+  padding: 0px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.cardImage {
+  width: 140px;
+  height: 140px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cardName {
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 600;
+  margin-bottom: 4px;
+  text-wrap: balance;
+}
+
+.cardRole {
+  color: #fff;
+  opacity: 0.5;
+  font-size: 14px;
+  line-height: 1.4;
+}
