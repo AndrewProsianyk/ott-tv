@@ -1,8 +1,13 @@
 import Image from "next/image";
 import styles from "./PeopleCard.module.scss";
 import photoPlaceholder from "@/public/images/photoPlaceholder.png";
+import { Person } from "@/app/utils/types";
 
-export default function PeopleCard({ person }) {
+type PeopleCardProps = {
+  person: Person;
+};
+
+export default function PeopleCard({ person }: PeopleCardProps) {
   const imageSrc = person.profile_path
     ? `https://image.tmdb.org/t/p/w200/${person.profile_path}`
     : photoPlaceholder;
@@ -16,7 +21,7 @@ export default function PeopleCard({ person }) {
         className={styles.cardImage}
       />
       <p className={styles.cardName}>{person.name}</p>
-      <p className={styles.cardRole}>{person.character}</p>
+      <p className={styles.cardRole}>{person.character || person.job}</p>
     </article>
   );
 }

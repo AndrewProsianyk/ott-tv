@@ -5,10 +5,19 @@
 
 .sliderWrapper {
   display: flex;
+  padding-left: 125px;
+  padding-right: 125px;
   gap: 15px;
   width: 100%;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .scrollButton {

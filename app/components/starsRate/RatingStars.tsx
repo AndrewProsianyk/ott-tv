@@ -1,16 +1,15 @@
 import StarIcon from "../icons/StarIcon";
 import styles from "./RatingStars.module.scss";
 
-export default function RatingStars({ rating }) {
-  const getVariant = (min, max) => {
+type StarVariant = "full" | "half" | "empty";
+
+export default function RatingStars({ rating }: { rating: number }) {
+  const getVariant = (min: number, max: number): StarVariant => {
     if (min < rating && rating < max) {
       return "half";
     } else if (rating >= max) {
       return "full";
-    } else if (rating < min) {
-      return "empty";
-    }
-    return;
+    } else return "empty";
   };
 
   return (

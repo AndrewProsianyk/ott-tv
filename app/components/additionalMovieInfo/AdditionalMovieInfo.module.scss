@@ -1,0 +1,17 @@
+.additionalInfo {
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.verticalLine::after {
+  content: "";
+  display: block;
+  width: 1px;
+  background-color: #fff;
+  opacity: 50%;
+  height: 100%;
+  margin-left: 12px;
+  margin-right: 12px;
+}

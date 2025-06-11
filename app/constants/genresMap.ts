@@ -1,4 +1,6 @@
-export const MOVIE_GENRES_LIST = [
+import { Genre } from "../utils/types";
+
+export const MOVIE_GENRES_LIST: Genre[] = [
   { id: 28, key: "action", name: "Action" },
   { id: 12, key: "adventure", name: "Adventure" },
   { id: 16, key: "animation", name: "Animation" },
@@ -19,7 +21,7 @@ export const MOVIE_GENRES_LIST = [
   { id: 37, key: "western", name: "Western" },
 ];
 
-export const TV_GENRES_LIST = [
+export const TV_GENRES_LIST: Genre[] = [
   { id: 10759, key: "actionAdventure", name: "Action & Adventure" },
   { id: 16, key: "animation", name: "Animation" },
   { id: 35, key: "comedy", name: "Comedy" },
