@@ -8,8 +8,14 @@ import PlayIcon from "../icons/PlayIcon";
 import PlusIcon from "../icons/PlusIcon";
 import LinkButton from "../linkButton/LinkButton";
 import AdditionalMovieInfo from "../additionalMovieInfo/AdditionalMovieInfo";
+import { Movie } from "@/app/utils/types";
 
-export default function Hero({ movie }) {
+type HeroProps = {
+  movie: Movie;
+};
+
+export default function Hero({ movie }: HeroProps) {
+  console.log(movie);
   return (
     <div className={styles.heroSection}>
       <Container>
@@ -22,8 +28,16 @@ export default function Hero({ movie }) {
             <AdditionalMovieInfo movie={movie} />
             <p className={styles.description}>{movie.overview}</p>
             <div className="flex gap-[24px]">
-              <LinkButton href={"/qwe"} icon={<PlayIcon />} label="Watch" />
-              <Button icon={<PlusIcon />} label="Add to list" />
+              <LinkButton
+                href={`/movies/${movie.id}`}
+                icon={<PlayIcon />}
+                label="Watch"
+              />
+              <Button
+                icon={<PlusIcon />}
+                label="Add to list"
+                variant="secondary"
+              />
             </div>
             {movie?.adult && (
               <div className={styles.ageRating}>

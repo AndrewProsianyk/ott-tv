@@ -5,10 +5,20 @@ import styles from "./Slider.module.scss";
 import SliderButtonArrowLeft from "../icons/SliderButtonArrowLeft";
 import SliderButtonArrowRight from "../icons/SliderButtonArrowRight";
 
-export default function Slider({ cardWidth, children, withButtons = false }) {
+type SliderProps = {
+  cardWidth: string;
+  children: React.ReactNode;
+  withButtons?: boolean;
+};
+
+export default function Slider({
+  cardWidth,
+  children,
+  withButtons = false,
+}: SliderProps) {
   const sliderRef = useRef(null);
 
-  const scroll = (direction) => {
+  const scroll = (direction: string) => {
     if (!sliderRef.current) return;
 
     const numericCardWidth =

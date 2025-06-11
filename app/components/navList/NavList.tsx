@@ -1,7 +1,12 @@
 import Link from "next/link";
 import styles from "./NavList.module.scss";
 
-const navList = [
+type NavItem = {
+  label: string;
+  path: string;
+};
+
+const navList: NavItem[] = [
   {
     label: "Movies",
     path: "/movies",

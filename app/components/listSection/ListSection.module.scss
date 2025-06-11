@@ -3,21 +3,3 @@
   max-width: 1920px;
   padding: 54px 0px;
 }
-
-.sectionTitle {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 30px;
-  margin-bottom: 40px;
-  text-transform: uppercase;
-
-  &::after {
-    content: "";
-    display: block;
-    width: 30px;
-    background-color: #c1272d;
-    height: 4px;
-    margin-top: 20px;
-  }
-}

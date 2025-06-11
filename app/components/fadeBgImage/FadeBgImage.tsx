@@ -1,13 +1,17 @@
 import Image from "next/image";
 import styles from "./FadeBgImage.module.scss";
 
-export default function FadeBgImage({ src }) {
+type FadeBgImageProps = {
+  src: string;
+};
+
+export default function FadeBgImage({ src }: FadeBgImageProps) {
   return (
     <div className={styles.imageWrap}>
       <Image
-        alt="hero section image"
+        alt="movie poster"
         width={1600}
-        height={785}
+        height={900}
         src={src}
         style={{
           objectFit: "cover",

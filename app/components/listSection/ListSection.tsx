@@ -1,18 +1,27 @@
+import { Movie } from "@/app/utils/types";
 import Container from "../container/Container";
 import MovieCard from "../movieCard/MovieCard";
 import Slider from "../slider/Slider";
 import SliderItem from "../sliderItem/SliderItem";
 import styles from "./ListSection.module.scss";
+import SectionTitle from "../sectionTitle/SectionTitle";
 
-export default function ListSection({ title, data }) {
+type ListSectionProps = {
+  title: string;
+  data: Movie[];
+};
+
+export default function ListSection({ title, data }: ListSectionProps) {
+  const cardWidth: string = "236px";
+
   return (
     <section className={styles.listSection}>
       <Container>
-        <h3 className={styles.sectionTitle}>{title}</h3>
+        <SectionTitle title={title} />
       </Container>
-      <Slider data={data} cardWidth="236px" withButtons>
+      <Slider cardWidth={cardWidth} withButtons>
         {data?.map((item, idx) => (
-          <SliderItem key={item.id || idx} cardWidth="236px">
+          <SliderItem key={item.id || idx} cardWidth={cardWidth}>
             <MovieCard movie={item} />
           </SliderItem>
         ))}

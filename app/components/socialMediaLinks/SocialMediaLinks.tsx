@@ -4,7 +4,12 @@ import FacebookIcon from "../icons/FacebookIcon";
 import LinkedInIcon from "../icons/LinkedInIcon";
 import TwitterIcon from "../icons/TwitterIcon";
 
-const links = [
+type LinkItem = {
+  href: string;
+  icon: React.ReactNode;
+};
+
+const links: LinkItem[] = [
   {
     href: "https://fb.com",
     icon: <FacebookIcon />,

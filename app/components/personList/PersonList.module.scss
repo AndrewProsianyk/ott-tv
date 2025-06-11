@@ -1,0 +1,10 @@
+.section {
+  margin-bottom: 54px;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+}

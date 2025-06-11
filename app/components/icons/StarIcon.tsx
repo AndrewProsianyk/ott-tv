@@ -1,6 +1,10 @@
 "use client";
 
-export default function StarIcon({ variant = "empty" }) {
+type StarIconProps = {
+  variant?: "empty" | "half" | "full";
+};
+
+export default function StarIcon({ variant = "empty" }: StarIconProps) {
   const fillId =
     variant === "full"
       ? "solid-orange"

@@ -9,7 +9,7 @@ export default function HeaderTools() {
     <div className="flex gap-[40px] items-center">
       <SearchButton />
       <Link href={"/profile"}>
-        <Image alt="avatar" width={40} height={40} src={avatar} />
+        <Image alt="avatar" width={40} height={41} src={avatar} />
       </Link>
     </div>
   );
