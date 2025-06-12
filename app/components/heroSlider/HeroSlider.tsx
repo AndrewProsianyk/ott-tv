@@ -13,13 +13,6 @@ export default function HeroSlider({ movies }: HeroSliderProps) {
   const [index, setIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(null);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setIndex((prev) => (prev + 1) % movies.length);
-  //   }, 5000);
-  //   return () => clearInterval(interval);
-  // }, [movies.length]);
-
   useEffect(() => {
     if (movies.length > 0) {
       setTimeout(() => setIsVisible(true), 100);
@@ -27,7 +20,7 @@ export default function HeroSlider({ movies }: HeroSliderProps) {
   }, [movies.length]);
 
   useEffect(() => {
-    if (!isVisible) return; // Не запускаємо інтервал поки не показали перший фільм
+    if (!isVisible) return;
 
     const interval = setInterval(() => {
       setIsVisible(false);

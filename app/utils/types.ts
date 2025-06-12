@@ -52,3 +52,13 @@ export type Genre = {
   key?: string;
   name: string;
 };
+
+export type Review = {
+  author: string;
+  content: string;
+  id: string;
+  created_at: string;
+  author_details: {
+    rating: number;
+  };
+};

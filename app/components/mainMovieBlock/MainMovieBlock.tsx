@@ -12,12 +12,11 @@ import AgeRating from "../ageRating/AgeRating";
 import GenresList from "../genresList/GenresList";
 
 export default function MainMovieBlock({ movie, logo }) {
-  console.log(movie);
   return (
     <Container>
       <div className="relative">
         <FadeBgImage
-          src={`https://image.tmdb.org/t/p/w1280${movie?.backdrop_path}`}
+          src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
         />
         <div className={styles.content}>
           {logo ? (

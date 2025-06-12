@@ -15,7 +15,6 @@ type HeroProps = {
 };
 
 export default function Hero({ movie }: HeroProps) {
-  console.log(movie);
   return (
     <div className={styles.heroSection}>
       <Container>

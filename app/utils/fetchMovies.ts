@@ -1,6 +1,6 @@
 "use server";
 
-import { Movie, MovieCredits } from "./types";
+import { Movie, MovieCredits, Review } from "./types";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_TOKEN = process.env.TMDB_API_READ_ACCESS_TOKEN;
@@ -21,7 +21,6 @@ export async function getMovieById(movieId: number): Promise<Movie | null> {
       `${API_BASE_URL}/movie/${movieId}?language=en-US`,
       fetchOptions
     );
-    console.log(response);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -98,7 +97,6 @@ export async function getMovieVideos(movieId: number) {
       `${API_BASE_URL}/movie/${movieId}/videos?language=en-US`,
       fetchOptions
     );
-    console.log(response);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -106,7 +104,7 @@ export async function getMovieVideos(movieId: number) {
 
     return await response.json();
   } catch (error) {
-    console.error("Error fetching movie:", error);
+    console.error("Error fetching videos:", error);
     return null;
   }
 }
@@ -128,7 +126,7 @@ export async function getMovieTrailer(movieId: number) {
 
     return data?.results?.filter((item) => item.type === "Trailer")[0].key;
   } catch (error) {
-    console.error("Error fetching movie:", error);
+    console.error("Error fetching trailer:", error);
     return null;
   }
 }
@@ -148,7 +146,77 @@ export async function getMovieLogo(movieId: number) {
 
     return data.logos.find((img) => img.iso_639_1 === "en");
   } catch (error) {
-    console.error("Error fetching movie:", error);
+    console.error("Error fetching logo:", error);
+    return null;
+  }
+}
+
+export async function getMovieReviews(
+  movieId: number
+): Promise<Review[] | null> {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/movie/${movieId}/reviews?language=en-US`,
+      fetchOptions
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.results.length === 0) return null;
+
+    return data.results;
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    return null;
+  }
+}
+export async function getMovieReviewIDs(
+  movieId: number
+): Promise<string[] | null> {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/movie/${movieId}/reviews?language=en-US`,
+      fetchOptions
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.results || data.results.length === 0) return null;
+
+    const reviewIDs = data.results.map((review: any) => review.id);
+    return reviewIDs;
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    return null;
+  }
+}
+
+export async function getReviewDetailsById(reviewId: string) {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/review/${reviewId}`,
+      fetchOptions
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!data) return null;
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
     return null;
   }
 }
