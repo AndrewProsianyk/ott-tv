@@ -13,13 +13,12 @@ import MainMovieBlock from "@/app/components/mainMovieBlock/MainMovieBlock";
 import ReviewsList from "@/app/components/reviewsList/ReviewsList";
 
 type MoviePageParams = {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 };
 
 export default async function MoviePage({ params }: MoviePageParams) {
   const { id } = await params;
+
   const movie = await getMovieById(Number(id));
   const videoId = await getMovieTrailer(Number(id));
   const logo = await getMovieLogo(Number(id));
