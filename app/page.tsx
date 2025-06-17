@@ -13,9 +13,21 @@ export default async function Home() {
     <div className={styles.page}>
       <HeroSlider movies={popularMovies.slice(0, 10)} />
       <div>
-        <ListSection title="By genre Action" data={actionMovies} />
-        <ListSection title="By genre Comedy" data={comedyMovies} />
-        <ListSection title="By genre Documentary" data={docMovies} />
+        <ListSection
+          title="By genre Action"
+          data={actionMovies}
+          type="movies"
+        />
+        <ListSection
+          title="By genre Comedy"
+          data={comedyMovies}
+          type="movies"
+        />
+        <ListSection
+          title="By genre Documentary"
+          data={docMovies}
+          type="movies"
+        />
       </div>
     </div>
   );

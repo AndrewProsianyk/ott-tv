@@ -5,11 +5,12 @@ import { Movie } from "@/app/utils/types";
 
 type MoviecardProps = {
   movie: Movie;
+  type?: "movies" | "tv";
 };
 
-export default function MovieCard({ movie }: MoviecardProps) {
+export default function MovieCard({ movie, type = "movies" }: MoviecardProps) {
   return (
-    <Link href={`/movies/${movie.id}`} className={styles.card}>
+    <Link href={`/${type}/${movie.id}`} className={styles.card}>
       <Image
         src={`https://image.tmdb.org/t/p/w1280${movie?.poster_path}`}
         width={236}
@@ -17,7 +18,7 @@ export default function MovieCard({ movie }: MoviecardProps) {
         className={styles.image}
         alt="movie poster"
       />
-      <p className={styles.title}>{movie.title}</p>
+      <p className={styles.title}>{movie.title || movie.name}</p>
     </Link>
   );
 }

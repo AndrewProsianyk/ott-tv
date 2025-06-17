@@ -13,12 +13,12 @@ const navList: NavItem[] = [
   },
   {
     label: "TV Series",
-    path: "/tv-series",
+    path: "/tv",
   },
-  {
-    label: "Documentaries",
-    path: "/documentaries",
-  },
+  // {
+  //   label: "Documentaries",
+  //   path: "/documentaries",
+  // },
 ];
 
 export default function NavList() {

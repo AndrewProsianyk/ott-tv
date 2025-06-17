@@ -1,8 +1,8 @@
 "use server";
 
+import { API_BASE_URL } from "../constants/apiRoutes";
 import { Movie, MovieCredits, Review } from "./types";
 
-const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_TOKEN = process.env.TMDB_API_READ_ACCESS_TOKEN;
 const CACHE_TIME = 3600;
 
@@ -74,6 +74,7 @@ export async function getMoviesByGenre(
     return [];
   }
 }
+
 export async function getPopularMovies() {
   try {
     const response = await fetch(
@@ -215,6 +216,27 @@ export async function getReviewDetailsById(reviewId: string) {
     if (!data) return null;
 
     return data;
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    return null;
+  }
+}
+export async function fetchMovieByQuery(query: any) {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/search/movie?&query=${query}&language=en-US&page=1&include_adult=false`,
+      fetchOptions
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!data) return null;
+
+    return data.results;
   } catch (error) {
     console.error("Error fetching reviews:", error);
     return null;

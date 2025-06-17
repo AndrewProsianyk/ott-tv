@@ -1,5 +1,36 @@
-import React from "react";
+import { getMoviesByGenre } from "../utils/fetchMovies";
+import ListSection from "../components/listSection/ListSection";
 
-export default function MoviesPage() {
-  return <div style={{ color: "#fff" }}>MOVIES</div>;
+const popularGenres = [
+  { id: 12, key: "adventure", name: "Adventure" },
+  { id: 80, key: "crime", name: "Crime" },
+  { id: 18, key: "drama", name: "Drama" },
+  { id: 27, key: "horror", name: "Horror" },
+  { id: 878, key: "scienceFiction", name: "Science Fiction" },
+  { id: 10751, key: "family", name: "Family" },
+  { id: 14, key: "fantasy", name: "Fantasy" },
+  // { id: 10749, key: "romance", name: "Romance" },
+  { id: 10402, key: "music", name: "Music" },
+];
+
+export default async function MoviesPage() {
+  const genreMoviePromises = popularGenres.map(async (genre) => {
+    const data = await getMoviesByGenre(genre.id);
+    return { ...genre, data };
+  });
+
+  const genreSections = await Promise.all(genreMoviePromises);
+  return (
+    <main className="pt-[200px] text-white">
+      {genreSections.map((genre) => (
+        <div key={genre.id}>
+          <ListSection
+            title={`${genre.name} Movies`}
+            data={genre.data}
+            type="movies"
+          />
+        </div>
+      ))}
+    </main>
+  );
 }

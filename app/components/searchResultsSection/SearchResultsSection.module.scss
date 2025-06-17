@@ -1,0 +1,14 @@
+.wrapper {
+  padding: 54px 0px;
+}
+
+.movieGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+.noResults {
+  color: #dedede;
+}

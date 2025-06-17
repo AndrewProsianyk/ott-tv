@@ -1,0 +1,19 @@
+.searchInput {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px 15px;
+  border-radius: 3px;
+  color: rgb(0, 0, 68);
+}
+.formWrap {
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+}
+.searchForm {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+}

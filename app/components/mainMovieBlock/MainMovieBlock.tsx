@@ -22,14 +22,14 @@ export default function MainMovieBlock({ movie, logo }) {
           {logo ? (
             <Image
               alt="movie logo"
-              title={movie.title}
+              title={movie.title || movie.name}
               key={logo.file_path}
               width={500}
               height={logo.width / logo.aspect_ratio}
               src={`https://image.tmdb.org/t/p/original${logo.file_path}`}
             />
           ) : (
-            <h1 className={styles.title}>{movie.title}</h1>
+            <h1 className={styles.title}>{movie.title || movie.name}</h1>
           )}
 
           <AdditionalMovieInfo movie={movie} />
