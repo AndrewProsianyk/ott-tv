@@ -22,7 +22,6 @@ export default async function TVSerialPage({ params }: TVSerialPageParams) {
   const logo = await getTVSerialLogo(Number(id));
   const { crew, cast } = await getTVSerialCredits(Number(id));
   const reviewIds = await getTVserialReviewIds(Number(id));
-  console.log(reviewIds, "reviewIds");
 
   const uniqueCast = peopleWithoutDuplicates(cast).slice(0, 18);
   const uniqueCrew = peopleWithoutDuplicates(crew).slice(0, 8);

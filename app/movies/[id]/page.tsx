@@ -24,6 +24,8 @@ export default async function MoviePage({ params }: MoviePageParams) {
   const { crew, cast } = await getMovieCredits(Number(id));
   const reviewIds = await getMovieReviewIDs(Number(id));
 
+  console.log(videoId, "video");
+
   const uniqueCast = peopleWithoutDuplicates(cast).slice(0, 18);
   const uniqueCrew = peopleWithoutDuplicates(crew).slice(0, 8);
   return (

@@ -1,5 +1,3 @@
-// import styles from "./TrailerSection.module.scss";
-
 import Container from "../container/Container";
 import VideoContainer from "../videoContainer/VideoContainer";
 

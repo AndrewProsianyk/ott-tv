@@ -77,6 +77,15 @@ export async function getTVSerialCredits(
   }
 }
 
+type MovieLogoType = {
+  aspect_ratio: number;
+  file_path: string;
+  iso_639_1: string;
+  vote_average: number;
+  width: number;
+  height: number;
+};
+
 export async function getTVSerialLogo(movieId: number) {
   try {
     const response = await fetch(
@@ -90,7 +99,7 @@ export async function getTVSerialLogo(movieId: number) {
 
     const data = await response.json();
 
-    return data.logos.find((img) => img.iso_639_1 === "en");
+    return data.logos.find((img: MovieLogoType) => img.iso_639_1 === "en");
   } catch (error) {
     console.error("Error fetching logo:", error);
     return null;
@@ -99,7 +108,7 @@ export async function getTVSerialLogo(movieId: number) {
 
 export async function getTVserialReviewIds(
   movieId: number
-): Promise<string[] | null> {
+): Promise<number[] | null> {
   try {
     const response = await fetch(
       `${API_BASE_URL}/tv/${movieId}/reviews?language=en-US`,

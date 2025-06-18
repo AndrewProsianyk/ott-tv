@@ -4,7 +4,7 @@ import SectionTitle from "../sectionTitle/SectionTitle";
 import ReviewItem from "../review/ReviewItem";
 
 type ReviewsListProps = {
-  data: string[];
+  data: number[] | null;
   title: string;
 };
 

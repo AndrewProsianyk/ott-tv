@@ -20,7 +20,7 @@ export default async function TVSeriesPage() {
   });
 
   const genreSections = await Promise.all(genreMoviePromises);
-  console.log(genreSections);
+
   return (
     <main className="pt-[200px] text-white">
       {genreSections.map((genre) => (
