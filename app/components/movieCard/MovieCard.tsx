@@ -10,7 +10,11 @@ type MoviecardProps = {
 
 export default function MovieCard({ movie, type = "movies" }: MoviecardProps) {
   return (
-    <Link href={`/${type}/${movie.id}`} className={styles.card}>
+    <Link
+      href={`/${type}/${movie.id}`}
+      className={styles.card}
+      aria-label="Link to movie or tv serial page"
+    >
       <Image
         src={`https://image.tmdb.org/t/p/w1280${movie?.poster_path}`}
         width={236}
