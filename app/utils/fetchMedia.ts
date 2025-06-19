@@ -1,7 +1,13 @@
 "use server";
 
 import { API_BASE_URL } from "../constants/apiRoutes";
-import { Media, MovieCredits, Review } from "./types";
+import {
+  Media,
+  MediaLogoType,
+  MovieCredits,
+  Review,
+  VideoItemType,
+} from "./types";
 
 const API_TOKEN = process.env.TMDB_API_READ_ACCESS_TOKEN;
 const CACHE_TIME = 3600;
@@ -119,10 +125,6 @@ export async function getMediaVideos(type: MediaType, mediaId: number) {
   }
 }
 
-type VideoItemType = {
-  type: "Trailer" | "Teaser" | "Featurette" | "Clip";
-};
-
 export async function getMediaTrailer(type: MediaType, mediaId: number) {
   try {
     const response = await fetch(
@@ -146,15 +148,6 @@ export async function getMediaTrailer(type: MediaType, mediaId: number) {
     return null;
   }
 }
-
-type MediaLogoType = {
-  aspect_ratio: number;
-  file_path: string;
-  iso_639_1: string;
-  vote_average: number;
-  width: number;
-  height: number;
-};
 
 export async function getMediaLogo(type: MediaType, mediaId: number) {
   try {
@@ -218,7 +211,7 @@ export async function getMediaReviewIDs(
 
     if (!data.results || data.results.length === 0) return null;
 
-    const reviewIDs = data.results.map((review: any) => review.id);
+    const reviewIDs = data.results.map((review: Review) => review.id);
     return reviewIDs;
   } catch (error) {
     console.error("Error fetching review IDs:", error);

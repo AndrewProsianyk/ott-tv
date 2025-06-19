@@ -2,7 +2,11 @@ import Container from "../container/Container";
 import SearchButton from "../search-button/SearchButton";
 import styles from "./SearchForm.module.scss";
 
-export default function SearchForm({ action }) {
+type SearchFormProps = {
+  action: (formData: FormData) => void | Promise<void>;
+};
+
+export default function SearchForm({ action }: SearchFormProps) {
   return (
     <Container>
       <div className={styles.formWrap}>

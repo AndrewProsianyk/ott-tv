@@ -6,6 +6,7 @@ type TrailerSectionProps = {
 };
 
 export default function TrailerSection({ videoId }: TrailerSectionProps) {
+  if (!videoId) return null;
   return (
     <section id="trailer-section" className="py-[54px]">
       <Container>

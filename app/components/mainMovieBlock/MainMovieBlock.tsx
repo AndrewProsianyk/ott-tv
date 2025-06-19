@@ -10,8 +10,15 @@ import Button from "../button/Button";
 import PlusIcon from "../icons/PlusIcon";
 import AgeRating from "../ageRating/AgeRating";
 import GenresList from "../genresList/GenresList";
+import { Media, MediaLogoType } from "@/app/utils/types";
+import DescriptionBlock from "../descriptionBlock/DescriptionBlock";
 
-export default function MainMovieBlock({ movie, logo }) {
+type MainMovieBlockProps = {
+  movie: Media;
+  logo: MediaLogoType;
+};
+
+export default function MainMovieBlock({ movie, logo }: MainMovieBlockProps) {
   return (
     <Container>
       <div className="relative">
@@ -33,7 +40,7 @@ export default function MainMovieBlock({ movie, logo }) {
           )}
 
           <AdditionalMovieInfo movie={movie} />
-          <p className={styles.description}>{movie.overview}</p>
+          <DescriptionBlock text={movie.overview} />
           <GenresList movie={movie} />
           <div className="flex gap-[24px]">
             <Button

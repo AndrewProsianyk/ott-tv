@@ -16,7 +16,7 @@ export default function Slider({
   children,
   withButtons = false,
 }: SliderProps) {
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<HTMLDivElement | null>(null);
 
   const scroll = (direction: string) => {
     if (!sliderRef.current) return;

@@ -64,3 +64,16 @@ export type Review = {
     rating: number;
   };
 };
+
+export type MediaLogoType = {
+  aspect_ratio: number;
+  file_path: string;
+  iso_639_1: string;
+  vote_average: number;
+  width: number;
+  height: number;
+};
+
+export type VideoItemType = {
+  type: "Trailer" | "Teaser" | "Featurette" | "Clip";
+};
