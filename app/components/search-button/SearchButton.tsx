@@ -3,7 +3,7 @@ import styles from "./SearchButton.module.scss";
 
 export default function SearchButton() {
   return (
-    <button className={styles.searchButton}>
+    <button aria-label="search" className={styles.searchButton}>
       <SearchIcon />
     </button>
   );

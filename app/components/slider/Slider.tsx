@@ -37,6 +37,7 @@ export default function Slider({
     <div className={styles.sliderContainer}>
       {withButtons && (
         <button
+          aria-label="Scroll left"
           className={styles.scrollButton + " " + styles.left}
           onClick={() => scroll("left")}
         >
@@ -50,6 +51,7 @@ export default function Slider({
 
       {withButtons && (
         <button
+          aria-label="Scroll right"
           className={styles.scrollButton + " " + styles.right}
           onClick={() => scroll("right")}
         >

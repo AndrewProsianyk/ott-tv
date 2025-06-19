@@ -7,7 +7,11 @@ import SearchIcon from "../icons/SearchIcon";
 export default function HeaderTools() {
   return (
     <div className="flex gap-[40px] items-center">
-      <Link href={"/search"} className={styles.searchButton}>
+      <Link
+        href={"/search"}
+        className={styles.searchButton}
+        aria-label="Go to search page"
+      >
         <SearchIcon />
       </Link>
       <Link href={"/profile"}>
