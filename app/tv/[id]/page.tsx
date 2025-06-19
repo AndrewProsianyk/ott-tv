@@ -3,12 +3,13 @@ import peopleWithoutDuplicates from "@/app/utils/peopleWithoutDuplicates";
 import TrailerSection from "@/app/components/trailerSection/TrailerSection";
 import MainMovieBlock from "@/app/components/mainMovieBlock/MainMovieBlock";
 import ReviewsList from "@/app/components/reviewsList/ReviewsList";
+
 import {
-  getTVSerialById,
-  getTVSerialCredits,
-  getTVSerialLogo,
-  getTVserialReviewIds,
-} from "@/app/utils/fetchTVSeries";
+  getMediaById,
+  getMediaCredits,
+  getMediaLogo,
+  getMediaReviewIDs,
+} from "@/app/utils/fetchMedia";
 
 type TVSerialPageParams = {
   params: Promise<{ id: string }>;
@@ -17,11 +18,11 @@ type TVSerialPageParams = {
 export default async function TVSerialPage({ params }: TVSerialPageParams) {
   const { id } = await params;
 
-  const tv = await getTVSerialById(Number(id));
+  const tv = await getMediaById("tv", Number(id));
   //   const videoId = await getMovieTrailer(Number(id));
-  const logo = await getTVSerialLogo(Number(id));
-  const { crew, cast } = await getTVSerialCredits(Number(id));
-  const reviewIds = await getTVserialReviewIds(Number(id));
+  const logo = await getMediaLogo("tv", Number(id));
+  const { crew, cast } = await getMediaCredits("tv", Number(id));
+  const reviewIds = await getMediaReviewIDs("tv", Number(id));
 
   const uniqueCast = peopleWithoutDuplicates(cast).slice(0, 18);
   const uniqueCrew = peopleWithoutDuplicates(crew).slice(0, 8);

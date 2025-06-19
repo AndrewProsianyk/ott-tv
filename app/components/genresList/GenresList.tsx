@@ -1,8 +1,8 @@
-import { Movie } from "@/app/utils/types";
+import { Media } from "@/app/utils/types";
 import styles from "./GenresList.module.scss";
 
 type GenresListProps = {
-  movie: Movie;
+  movie: Media;
 };
 
 export default function GenresList({ movie }: GenresListProps) {

@@ -1,7 +1,7 @@
-import { Movie } from "@/app/utils/types";
+import { Media } from "@/app/utils/types";
 import styles from "./AgeRating.module.scss";
 
-export default function AgeRating({ movie }: { movie: Movie }) {
+export default function AgeRating({ movie }: { movie: Media }) {
   return (
     <>
       {movie?.adult && (

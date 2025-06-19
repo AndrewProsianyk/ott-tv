@@ -8,10 +8,10 @@ import PlayIcon from "../icons/PlayIcon";
 import PlusIcon from "../icons/PlusIcon";
 import LinkButton from "../linkButton/LinkButton";
 import AdditionalMovieInfo from "../additionalMovieInfo/AdditionalMovieInfo";
-import { Movie } from "@/app/utils/types";
+import { Media } from "@/app/utils/types";
 
 type HeroProps = {
-  movie: Movie;
+  movie: Media;
 };
 
 export default function Hero({ movie }: HeroProps) {

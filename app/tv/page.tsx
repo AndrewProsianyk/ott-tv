@@ -1,5 +1,5 @@
 import ListSection from "../components/listSection/ListSection";
-import { getTVSerialByGenre } from "../utils/fetchTVSeries";
+import { getMediaByGenre } from "../utils/fetchMedia";
 
 const popularGenres = [
   { id: 10759, key: "actionAdventure", name: "Action & Adventure" },
@@ -15,7 +15,7 @@ const popularGenres = [
 
 export default async function TVSeriesPage() {
   const genreMoviePromises = popularGenres.map(async (genre) => {
-    const data = await getTVSerialByGenre(genre.id);
+    const data = await getMediaByGenre("tv", genre.id);
     return { ...genre, data };
   });
 

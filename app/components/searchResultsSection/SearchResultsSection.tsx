@@ -1,10 +1,16 @@
-import { Movie } from "@/app/utils/types";
+import { Media } from "@/app/utils/types";
 import Container from "../container/Container";
 import MovieCard from "../movieCard/MovieCard";
 import SectionTitle from "../sectionTitle/SectionTitle";
 import styles from "./SearchResultsSection.module.scss";
 
-export default function SearchResultsSection({ results }) {
+type SearchResultsSectionProps = {
+  results: Media[];
+};
+
+export default function SearchResultsSection({
+  results,
+}: SearchResultsSectionProps) {
   return (
     <section className={styles.wrapper}>
       <Container>
@@ -13,7 +19,7 @@ export default function SearchResultsSection({ results }) {
 
           {results && results.length > 0 && (
             <ul className={styles.movieGrid}>
-              {results.map((movie: Movie) => (
+              {results.map((movie: Media) => (
                 <li key={movie.id}>
                   <MovieCard movie={movie} />
                 </li>

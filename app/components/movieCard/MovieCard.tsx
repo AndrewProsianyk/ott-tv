@@ -1,10 +1,10 @@
 import Link from "next/link";
 import styles from "./MovieCard.module.scss";
 import Image from "next/image";
-import { Movie } from "@/app/utils/types";
+import { Media } from "@/app/utils/types";
 
 type MoviecardProps = {
-  movie: Movie;
+  movie: Media;
   type?: "movies" | "tv";
 };
 

@@ -3,15 +3,15 @@
 import { useEffect, useState } from "react";
 import Hero from "../hero/Hero";
 import styles from "./HeroSlider.module.scss";
-import { Movie } from "@/app/utils/types";
+import { Media } from "@/app/utils/types";
 
 type HeroSliderProps = {
-  movies: Movie[];
+  movies: Media[];
 };
 
 export default function HeroSlider({ movies }: HeroSliderProps) {
   const [index, setIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(null);
+  const [isVisible, setIsVisible] = useState<Boolean | null>(null);
 
   useEffect(() => {
     if (movies.length > 0) {

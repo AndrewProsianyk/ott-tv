@@ -12,6 +12,7 @@ const initialState = {
 
 export default function SearchPage() {
   const [state, formAction] = useActionState(searchMovie, initialState);
+  console.log(state);
   return (
     <main className="pt-[200px]">
       <SearchForm action={formAction} />

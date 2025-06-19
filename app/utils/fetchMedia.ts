@@ -1,7 +1,7 @@
 "use server";
 
 import { API_BASE_URL } from "../constants/apiRoutes";
-import { Movie, MovieCredits, Review } from "./types";
+import { Media, MovieCredits, Review } from "./types";
 
 const API_TOKEN = process.env.TMDB_API_READ_ACCESS_TOKEN;
 const CACHE_TIME = 3600;
@@ -15,10 +15,15 @@ const fetchOptions = {
   next: { revalidate: CACHE_TIME },
 };
 
-export async function getMovieById(movieId: number): Promise<Movie | null> {
+type MediaType = "movie" | "tv";
+
+export async function getMediaById(
+  type: MediaType,
+  mediaId: number
+): Promise<Media | null> {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/movie/${movieId}?language=en-US`,
+      `${API_BASE_URL}/${type}/${mediaId}?language=en-US`,
       fetchOptions
     );
 
@@ -26,17 +31,20 @@ export async function getMovieById(movieId: number): Promise<Movie | null> {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    return (await response.json()) as Movie;
+    return (await response.json()) as Media;
   } catch (error) {
-    console.error("Error fetching movie:", error);
+    console.error("Error fetching media:", error);
     return null;
   }
 }
 
-export async function getMovieCredits(movieId: number): Promise<MovieCredits> {
+export async function getMediaCredits(
+  type: MediaType,
+  mediaId: number
+): Promise<MovieCredits> {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/movie/${movieId}/credits?language=en-US`,
+      `${API_BASE_URL}/${type}/${mediaId}/credits?language=en-US`,
       fetchOptions
     );
 
@@ -55,30 +63,31 @@ export async function getMovieCredits(movieId: number): Promise<MovieCredits> {
   }
 }
 
-export async function getMoviesByGenre(
+export async function getMediaByGenre(
+  type: MediaType,
   genreId: number,
   page = 1
-): Promise<Movie[]> {
+): Promise<Media[]> {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/discover/movie?with_genres=${genreId}&language=en-US&sort_by=popularity.desc&page=${page}`,
+      `${API_BASE_URL}/discover/${type}?with_genres=${genreId}&language=en-US&sort_by=popularity.desc&page=${page}`,
       fetchOptions
     );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    return data.results as Movie[];
+    return data.results as Media[];
   } catch (error) {
-    console.error("Can`t fetch movies by genre", error);
+    console.error("Can`t fetch media by genre", error);
     return [];
   }
 }
 
-export async function getPopularMovies() {
+export async function getPopularMedia(type: MediaType) {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/movie/popular?language=en-US&page=1`,
+      `${API_BASE_URL}/${type}/popular?language=en-US&page=1`,
       fetchOptions
     );
     if (!response.ok) {
@@ -87,15 +96,15 @@ export async function getPopularMovies() {
     const data = await response.json();
     return data.results || [];
   } catch (error) {
-    console.error("Can`t fetch movies by genre", error);
+    console.error("Can`t fetch popular media", error);
     return [];
   }
 }
 
-export async function getMovieVideos(movieId: number) {
+export async function getMediaVideos(type: MediaType, mediaId: number) {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/movie/${movieId}/videos?language=en-US`,
+      `${API_BASE_URL}/${type}/${mediaId}/videos?language=en-US`,
       fetchOptions
     );
 
@@ -114,10 +123,10 @@ type VideoItemType = {
   type: "Trailer" | "Teaser" | "Featurette" | "Clip";
 };
 
-export async function getMovieTrailer(movieId: number) {
+export async function getMediaTrailer(type: MediaType, mediaId: number) {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/movie/${movieId}/videos?language=en-US`,
+      `${API_BASE_URL}/${type}/${mediaId}/videos?language=en-US`,
       fetchOptions
     );
 
@@ -138,7 +147,7 @@ export async function getMovieTrailer(movieId: number) {
   }
 }
 
-type MovieLogoType = {
+type MediaLogoType = {
   aspect_ratio: number;
   file_path: string;
   iso_639_1: string;
@@ -147,10 +156,10 @@ type MovieLogoType = {
   height: number;
 };
 
-export async function getMovieLogo(movieId: number) {
+export async function getMediaLogo(type: MediaType, mediaId: number) {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/movie/${movieId}/images`,
+      `${API_BASE_URL}/${type}/${mediaId}/images`,
       fetchOptions
     );
 
@@ -159,21 +168,21 @@ export async function getMovieLogo(movieId: number) {
     }
 
     const data = await response.json();
-    console.log(data, "data in getMovieLogo");
 
-    return data.logos.find((img: MovieLogoType) => img.iso_639_1 === "en");
+    return data.logos.find((img: MediaLogoType) => img.iso_639_1 === "en");
   } catch (error) {
     console.error("Error fetching logo:", error);
     return null;
   }
 }
 
-export async function getMovieReviews(
-  movieId: number
+export async function getMediaReviews(
+  type: MediaType,
+  mediaId: number
 ): Promise<Review[] | null> {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/movie/${movieId}/reviews?language=en-US`,
+      `${API_BASE_URL}/${type}/${mediaId}/reviews?language=en-US`,
       fetchOptions
     );
 
@@ -191,12 +200,13 @@ export async function getMovieReviews(
     return null;
   }
 }
-export async function getMovieReviewIDs(
-  movieId: number
+export async function getMediaReviewIDs(
+  type: MediaType,
+  mediaId: number
 ): Promise<number[] | null> {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/movie/${movieId}/reviews?language=en-US`,
+      `${API_BASE_URL}/${type}/${mediaId}/reviews?language=en-US`,
       fetchOptions
     );
 
@@ -235,15 +245,15 @@ export async function getReviewDetailsById(
 
     return data as Review;
   } catch (error) {
-    console.error("Error fetching reviews:", error);
+    console.error("Error fetching review details:", error);
     return null;
   }
 }
 
-export async function fetchMovieByQuery(query: any) {
+export async function fetchMediaByQuery(type: MediaType, query: string) {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/search/movie?&query=${query}&language=en-US&page=1&include_adult=false`,
+      `${API_BASE_URL}/search/${type}?&query=${query}&language=en-US&page=1&include_adult=false`,
       fetchOptions
     );
 
@@ -257,7 +267,7 @@ export async function fetchMovieByQuery(query: any) {
 
     return data.results;
   } catch (error) {
-    console.error("Error fetching reviews:", error);
+    console.error("Error fetching media:", error);
     return null;
   }
 }

@@ -1,4 +1,4 @@
-import { getReviewDetailsById } from "@/app/utils/fetchMovies";
+import { getReviewDetailsById } from "@/app/utils/fetchMedia";
 import { Review } from "@/app/utils/types";
 import Image from "next/image";
 import React from "react";

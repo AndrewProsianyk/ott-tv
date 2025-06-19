@@ -1,15 +1,16 @@
-export type Movie = {
+export type Media = {
   id: number;
-  title: string;
+  title?: string;
   name?: string;
   overview: string;
   poster_path: string;
   backdrop_path: string;
-  adult: boolean;
+  adult?: boolean;
   production_companies: ProductionCompany[];
-  release_date: string;
+  release_date?: string;
+  first_air_date?: string;
   vote_average: number;
-  video: boolean;
+  video?: boolean;
   genres: Genre[];
 };
 

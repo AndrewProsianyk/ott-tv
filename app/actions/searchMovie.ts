@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchMovieByQuery } from "../utils/fetchMovies";
+import { fetchMediaByQuery } from "../utils/fetchMedia";
 
 export async function searchMovie(prevState: any, formData: FormData) {
   const query = formData.get("searchQuery");
@@ -13,7 +13,7 @@ export async function searchMovie(prevState: any, formData: FormData) {
   }
 
   try {
-    const results = await fetchMovieByQuery(query.trim());
+    const results = await fetchMediaByQuery("movie", query.trim());
 
     if (results === null) {
       return {

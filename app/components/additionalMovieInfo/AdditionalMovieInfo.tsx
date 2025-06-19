@@ -1,9 +1,9 @@
-import { Movie } from "@/app/utils/types";
+import { Media } from "@/app/utils/types";
 import RatingStars from "../starsRate/RatingStars";
 import styles from "./AdditionalMovieInfo.module.scss";
 
 type AdditionalMovieInfoProps = {
-  movie: Movie;
+  movie: Media;
 };
 
 export default function AdditionalMovieInfo({

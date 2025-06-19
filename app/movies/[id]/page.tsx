@@ -1,10 +1,10 @@
 import {
-  getMovieById,
-  getMovieCredits,
-  getMovieTrailer,
-  getMovieLogo,
-  getMovieReviewIDs,
-} from "@/app/utils/fetchMovies";
+  getMediaById,
+  getMediaCredits,
+  getMediaTrailer,
+  getMediaLogo,
+  getMediaReviewIDs,
+} from "@/app/utils/fetchMedia";
 import PersonList from "@/app/components/personList/PersonList";
 import peopleWithoutDuplicates from "@/app/utils/peopleWithoutDuplicates";
 import TrailerSection from "@/app/components/trailerSection/TrailerSection";
@@ -18,11 +18,11 @@ type MoviePageParams = {
 export default async function MoviePage({ params }: MoviePageParams) {
   const { id } = await params;
 
-  const movie = await getMovieById(Number(id));
-  const videoId = await getMovieTrailer(Number(id));
-  const logo = await getMovieLogo(Number(id));
-  const { crew, cast } = await getMovieCredits(Number(id));
-  const reviewIds = await getMovieReviewIDs(Number(id));
+  const movie = await getMediaById("movie", Number(id));
+  const videoId = await getMediaTrailer("movie", Number(id));
+  const logo = await getMediaLogo("movie", Number(id));
+  const { crew, cast } = await getMediaCredits("movie", Number(id));
+  const reviewIds = await getMediaReviewIDs("movie", Number(id));
 
   console.log(videoId, "video");
 

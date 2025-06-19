@@ -1,4 +1,4 @@
-import { getMoviesByGenre } from "../utils/fetchMovies";
+import { getMediaByGenre } from "../utils/fetchMedia";
 import ListSection from "../components/listSection/ListSection";
 
 const popularGenres = [
@@ -15,7 +15,7 @@ const popularGenres = [
 
 export default async function MoviesPage() {
   const genreMoviePromises = popularGenres.map(async (genre) => {
-    const data = await getMoviesByGenre(genre.id);
+    const data = await getMediaByGenre("movie", genre.id);
     return { ...genre, data };
   });
 

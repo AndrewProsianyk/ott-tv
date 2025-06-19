@@ -1,4 +1,4 @@
-import { Movie } from "@/app/utils/types";
+import { Media } from "@/app/utils/types";
 import Container from "../container/Container";
 import MovieCard from "../movieCard/MovieCard";
 import Slider from "../slider/Slider";
@@ -8,7 +8,7 @@ import SectionTitle from "../sectionTitle/SectionTitle";
 
 type ListSectionProps = {
   title: string;
-  data: Movie[];
+  data: Media[];
   type: "movies" | "tv";
 };
 

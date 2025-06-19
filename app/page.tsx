@@ -1,13 +1,13 @@
 import styles from "./page.module.scss";
 import ListSection from "./components/listSection/ListSection";
-import { getPopularMovies, getMoviesByGenre } from "./utils/fetchMovies";
+import { getMediaByGenre, getPopularMedia } from "./utils/fetchMedia";
 import HeroSlider from "./components/heroSlider/HeroSlider";
 
 export default async function Home() {
-  const popularMovies = await getPopularMovies();
-  const actionMovies = await getMoviesByGenre(28);
-  const comedyMovies = await getMoviesByGenre(35);
-  const docMovies = await getMoviesByGenre(99);
+  const popularMovies = await getPopularMedia("movie");
+  const actionMovies = await getMediaByGenre("movie", 28);
+  const comedyMovies = await getMediaByGenre("movie", 35);
+  const docMovies = await getMediaByGenre("movie", 99);
 
   return (
     <div className={styles.page}>
