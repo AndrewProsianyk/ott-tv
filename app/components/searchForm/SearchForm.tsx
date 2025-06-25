@@ -9,18 +9,16 @@ type SearchFormProps = {
 export default function SearchForm({ action }: SearchFormProps) {
   return (
     <Container>
-      <div className={styles.formWrap}>
-        <form action={action} className={styles.searchForm}>
-          <input
-            className={styles.searchInput}
-            type="text"
-            name="searchQuery"
-            placeholder="Search a movie"
-            required
-          />
-          <SearchButton />
-        </form>
-      </div>
+      <form action={action} className={styles.searchForm}>
+        <input
+          className={styles.searchInput}
+          type="text"
+          name="searchQuery"
+          placeholder="Search a movie"
+          required
+        />
+        <SearchButton />
+      </form>
     </Container>
   );
 }

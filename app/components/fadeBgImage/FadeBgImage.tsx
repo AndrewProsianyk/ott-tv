@@ -10,8 +10,10 @@ export default function FadeBgImage({ src }: FadeBgImageProps) {
     <div className={styles.imageWrap}>
       <Image
         alt="movie poster"
-        width={1600}
-        height={900}
+        // width={1600}
+        width={3840}
+        height={2160}
+        // height={900}
         src={src}
         style={{
           objectFit: "cover",
@@ -21,3 +23,5 @@ export default function FadeBgImage({ src }: FadeBgImageProps) {
     </div>
   );
 }
+
+// 3840 × 2160
