@@ -6,6 +6,7 @@ type ButtonProps = {
   variant?: "main" | "secondary";
   icon?: React.ReactNode;
   onClick?: () => void;
+  disabled?: boolean;
 };
 
 export default function Button({
@@ -13,9 +14,18 @@ export default function Button({
   label,
   variant = "main",
   onClick,
+  disabled,
 }: ButtonProps) {
   return (
-    <button className={clsx(styles.button, styles[variant])} onClick={onClick}>
+    <button
+      className={clsx(
+        styles.button,
+        styles[variant],
+        disabled && styles.disabled
+      )}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {icon && icon}
       <span className={styles.btnLabel}>{label}</span>
     </button>

@@ -125,7 +125,10 @@ export async function getMediaVideos(type: MediaType, mediaId: number) {
   }
 }
 
-export async function getMediaTrailer(type: MediaType, mediaId: number) {
+export async function getMediaTrailerId(
+  type: MediaType,
+  mediaId: number
+): Promise<string | null> {
   try {
     const response = await fetch(
       `${API_BASE_URL}/${type}/${mediaId}/videos?language=en-US`,
@@ -139,10 +142,12 @@ export async function getMediaTrailer(type: MediaType, mediaId: number) {
     const data = await response.json();
 
     if (data.results.length === 0) return null;
+    console.log(data, "data from fetch trailer");
 
-    return data?.results?.filter(
-      (item: VideoItemType) => item.type === "Trailer"
-    )[0].key;
+    return (
+      data?.results?.filter((item: VideoItemType) => item.type === "Trailer")[0]
+        ?.key || null
+    );
   } catch (error) {
     console.error("Error fetching trailer:", error);
     return null;

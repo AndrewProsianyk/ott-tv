@@ -1,7 +1,7 @@
 import {
   getMediaById,
   getMediaCredits,
-  getMediaTrailer,
+  getMediaTrailerId,
   getMediaLogo,
   getMediaReviewIDs,
 } from "@/app/utils/fetchMedia";
@@ -23,7 +23,7 @@ export default async function MoviePage({ params }: MoviePageParams) {
 
   if (!movie) notFound();
 
-  const videoId = await getMediaTrailer("movie", Number(id));
+  const videoId = await getMediaTrailerId("movie", Number(id));
   const logo = await getMediaLogo("movie", Number(id));
   const { crew, cast } = await getMediaCredits("movie", Number(id));
   const reviewIds = await getMediaReviewIDs("movie", Number(id));
@@ -32,7 +32,7 @@ export default async function MoviePage({ params }: MoviePageParams) {
   const uniqueCrew = peopleWithoutDuplicates(crew).slice(0, 8);
   return (
     <div>
-      <MainMovieBlock movie={movie} logo={logo} />
+      <MainMovieBlock movie={movie} logo={logo} hasTrailer={!!videoId} />
       <TrailerSection videoId={videoId} />
       <PersonList title="Crew" data={uniqueCrew} />
       <PersonList title="Top cast" data={uniqueCast} />

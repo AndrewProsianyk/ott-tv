@@ -16,9 +16,15 @@ import DescriptionBlock from "../descriptionBlock/DescriptionBlock";
 type MainMovieBlockProps = {
   movie: Media;
   logo: MediaLogoType;
+  hasTrailer: boolean;
 };
 
-export default function MainMovieBlock({ movie, logo }: MainMovieBlockProps) {
+export default function MainMovieBlock({
+  movie,
+  logo,
+  hasTrailer,
+}: MainMovieBlockProps) {
+  console.log(hasTrailer, "has trailer");
   return (
     <Container>
       <div className="relative">
@@ -53,6 +59,7 @@ export default function MainMovieBlock({ movie, logo }: MainMovieBlockProps) {
               icon={<PlayIcon />}
               label="Watch trailer"
               variant="main"
+              disabled={!hasTrailer}
             />
             <Button
               icon={<PlusIcon />}

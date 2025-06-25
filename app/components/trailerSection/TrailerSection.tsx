@@ -2,7 +2,7 @@ import Container from "../container/Container";
 import VideoContainer from "../videoContainer/VideoContainer";
 
 type TrailerSectionProps = {
-  videoId: string;
+  videoId: string | null;
 };
 
 export default function TrailerSection({ videoId }: TrailerSectionProps) {

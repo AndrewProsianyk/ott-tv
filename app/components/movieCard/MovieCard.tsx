@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./MovieCard.module.scss";
 import Image from "next/image";
+import mediaPlaceholder from "@/public/images/mediaPlaceholder.png";
 import { Media } from "@/app/utils/types";
 
 type MoviecardProps = {
@@ -9,6 +10,10 @@ type MoviecardProps = {
 };
 
 export default function MovieCard({ movie, type = "movies" }: MoviecardProps) {
+  const posterSrc = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w1280${movie.poster_path}`
+    : mediaPlaceholder;
+
   return (
     <Link
       href={`/${type}/${movie.id}`}
@@ -16,7 +21,7 @@ export default function MovieCard({ movie, type = "movies" }: MoviecardProps) {
       aria-label="Link to movie or tv serial page"
     >
       <Image
-        src={`https://image.tmdb.org/t/p/w1280${movie?.poster_path}`}
+        src={posterSrc}
         width={236}
         height={280}
         className={styles.image}

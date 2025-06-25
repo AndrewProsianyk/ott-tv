@@ -14,13 +14,17 @@ export default function PersonList({ data, title }: PersonListProps) {
     <section className={styles.section}>
       <Container>
         <SectionTitle title={title} />
-        <ul className={styles.list}>
-          {data.map((item) => (
-            <li key={item.id}>
-              <PeopleCard person={item} />
-            </li>
-          ))}
-        </ul>
+        {data.length === 0 ? (
+          <p className="text-white">No information</p>
+        ) : (
+          <ul className={styles.list}>
+            {data.map((item) => (
+              <li key={item.id}>
+                <PeopleCard person={item} />
+              </li>
+            ))}
+          </ul>
+        )}
       </Container>
     </section>
   );
