@@ -1,4 +1,5 @@
 import ListSection from "../components/listSection/ListSection";
+import PageContentWrap from "../components/pageContentWrap/PageContentWrap";
 import { getMediaByGenre } from "../utils/fetchMedia";
 
 const popularGenres = [
@@ -22,12 +23,12 @@ export default async function TVSeriesPage() {
   const genreSections = await Promise.all(genreMoviePromises);
 
   return (
-    <main className="pt-[200px] text-white">
+    <PageContentWrap>
       {genreSections.map((genre) => (
         <div key={genre.id}>
           <ListSection title={genre.name} data={genre.data} type="tv" />
         </div>
       ))}
-    </main>
+    </PageContentWrap>
   );
 }

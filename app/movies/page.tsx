@@ -1,5 +1,6 @@
 import { getMediaByGenre } from "../utils/fetchMedia";
 import ListSection from "../components/listSection/ListSection";
+import PageContentWrap from "../components/pageContentWrap/PageContentWrap";
 
 const popularGenres = [
   { id: 12, key: "adventure", name: "Adventure" },
@@ -9,7 +10,6 @@ const popularGenres = [
   { id: 878, key: "scienceFiction", name: "Science Fiction" },
   { id: 10751, key: "family", name: "Family" },
   { id: 14, key: "fantasy", name: "Fantasy" },
-  // { id: 10749, key: "romance", name: "Romance" },
   { id: 10402, key: "music", name: "Music" },
 ];
 
@@ -21,7 +21,7 @@ export default async function MoviesPage() {
 
   const genreSections = await Promise.all(genreMoviePromises);
   return (
-    <main className="pt-[200px] text-white">
+    <PageContentWrap>
       {genreSections.map((genre) => (
         <div key={genre.id}>
           <ListSection
@@ -31,6 +31,6 @@ export default async function MoviesPage() {
           />
         </div>
       ))}
-    </main>
+    </PageContentWrap>
   );
 }
