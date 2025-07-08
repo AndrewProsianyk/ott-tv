@@ -15,10 +15,10 @@ const navList: NavItem[] = [
     label: "TV Series",
     path: "/tv",
   },
-  // {
-  //   label: "Documentaries",
-  //   path: "/documentaries",
-  // },
+  {
+    label: "Favorite",
+    path: "/favorite",
+  },
 ];
 
 export default function NavList() {

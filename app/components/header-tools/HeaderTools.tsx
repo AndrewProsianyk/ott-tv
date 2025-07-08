@@ -14,9 +14,9 @@ export default function HeaderTools() {
       >
         <SearchIcon />
       </Link>
-      <Link href={"/profile"}>
+      {/* <Link href={"/profile"}>
         <Image alt="avatar" width={40} height={41} src={avatar} />
-      </Link>
+      </Link> */}
     </div>
   );
 }

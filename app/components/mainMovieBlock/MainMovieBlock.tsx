@@ -12,6 +12,8 @@ import AgeRating from "../ageRating/AgeRating";
 import GenresList from "../genresList/GenresList";
 import { Media, MediaLogoType } from "@/app/utils/types";
 import DescriptionBlock from "../descriptionBlock/DescriptionBlock";
+import { useFavoriteStore } from "@/app/store/favoritesStore";
+import CheckIcon from "../icons/CkeckIcon";
 
 type MainMovieBlockProps = {
   movie: Media;
@@ -24,7 +26,10 @@ export default function MainMovieBlock({
   logo,
   hasTrailer,
 }: MainMovieBlockProps) {
-  console.log(hasTrailer, "has trailer");
+  const toggleFavorite = useFavoriteStore((state) => state.toggleFavorite);
+  const favorites = useFavoriteStore((state) => state.favorites);
+
+  const isFavorite = favorites.some((m) => m.id === movie.id);
   return (
     <Container>
       <div className="relative">
@@ -62,9 +67,10 @@ export default function MainMovieBlock({
               disabled={!hasTrailer}
             />
             <Button
-              icon={<PlusIcon />}
-              label="Add to list"
+              icon={isFavorite ? <CheckIcon /> : <PlusIcon />}
+              label={isFavorite ? "Added to list" : "Add to list"}
               variant="secondary"
+              onClick={() => toggleFavorite(movie)}
             />
           </div>
           <AgeRating movie={movie} />

@@ -2,20 +2,22 @@ import { Media } from "@/app/utils/types";
 import Container from "../container/Container";
 import MovieCard from "../movieCard/MovieCard";
 import SectionTitle from "../sectionTitle/SectionTitle";
-import styles from "./SearchResultsSection.module.scss";
+import styles from "./GridListSection.module.scss";
 
-type SearchResultsSectionProps = {
+type GridListSectionProps = {
   results: Media[];
+  title: string;
 };
 
-export default function SearchResultsSection({
+export default function GridListSection({
   results,
-}: SearchResultsSectionProps) {
+  title,
+}: GridListSectionProps) {
   return (
     <section className={styles.wrapper}>
       <Container>
         <div className="results">
-          <SectionTitle title="Search Results:" />
+          <SectionTitle title={title} />
 
           {results && results.length > 0 && (
             <ul className={styles.movieGrid}>

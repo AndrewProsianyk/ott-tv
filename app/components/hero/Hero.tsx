@@ -9,12 +9,14 @@ import PlusIcon from "../icons/PlusIcon";
 import LinkButton from "../linkButton/LinkButton";
 import AdditionalMovieInfo from "../additionalMovieInfo/AdditionalMovieInfo";
 import { Media } from "@/app/utils/types";
+import { useFavoriteStore } from "@/app/store/favoritesStore";
 
 type HeroProps = {
   movie: Media;
 };
 
 export default function Hero({ movie }: HeroProps) {
+  const toggleFavorite = useFavoriteStore((state) => state.toggleFavorite);
   return (
     <div className={styles.heroSection}>
       <Container>
@@ -32,11 +34,12 @@ export default function Hero({ movie }: HeroProps) {
                 icon={<PlayIcon />}
                 label="Watch"
               />
-              <Button
+              {/* <Button
                 icon={<PlusIcon />}
                 label="Add to list"
                 variant="secondary"
-              />
+                onClick={() => toggleFavorite(movie)}
+              /> */}
             </div>
             {movie?.adult && (
               <div className={styles.ageRating}>

@@ -1,15 +1,26 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import Container from "../container/Container";
 import SearchButton from "../search-button/SearchButton";
 import styles from "./SearchForm.module.scss";
 
-type SearchFormProps = {
-  action: (formData: FormData) => void | Promise<void>;
-};
+export default function SearchForm() {
+  const router = useRouter();
 
-export default function SearchForm({ action }: SearchFormProps) {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const query = formData.get("searchQuery")?.toString().trim();
+
+    if (query) {
+      router.push(`/search?query=${encodeURIComponent(query)}`);
+    }
+  };
+
   return (
     <Container>
-      <form action={action} className={styles.searchForm}>
+      <form onSubmit={handleSubmit} className={styles.searchForm}>
         <input
           className={styles.searchInput}
           type="text"

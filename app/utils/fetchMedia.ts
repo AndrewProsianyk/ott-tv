@@ -142,7 +142,6 @@ export async function getMediaTrailerId(
     const data = await response.json();
 
     if (data.results.length === 0) return null;
-    console.log(data, "data from fetch trailer");
 
     return (
       data?.results?.filter((item: VideoItemType) => item.type === "Trailer")[0]
@@ -248,7 +247,10 @@ export async function getReviewDetailsById(
   }
 }
 
-export async function fetchMediaByQuery(type: MediaType, query: string) {
+export async function fetchMediaByQuery(
+  type: MediaType,
+  query: string | undefined
+) {
   try {
     const response = await fetch(
       `${API_BASE_URL}/search/${type}?&query=${query}&language=en-US&page=1&include_adult=false`,
