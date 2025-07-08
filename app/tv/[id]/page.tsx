@@ -31,7 +31,6 @@ export default async function TVSerialPage({ params }: TVSerialPageParams) {
 
   const uniqueCrew = peopleWithoutDuplicates(crew).slice(0, 8);
   const uniqueCast = peopleWithoutDuplicates(cast).slice(0, 18);
-  console.log(videoId, "id");
 
   return (
     <div>
