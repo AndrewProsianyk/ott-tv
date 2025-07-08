@@ -5,32 +5,34 @@ import SectionTitle from "../sectionTitle/SectionTitle";
 import styles from "./GridListSection.module.scss";
 
 type GridListSectionProps = {
-  results: Media[];
+  list: Media[];
   title: string;
+  noDataMsg: string;
 };
 
 export default function GridListSection({
-  results,
+  list,
   title,
+  noDataMsg,
 }: GridListSectionProps) {
   return (
     <section className={styles.wrapper}>
       <Container>
-        <div className="results">
+        <div>
           <SectionTitle title={title} />
 
-          {results && results.length > 0 && (
+          {list && list.length > 0 && (
             <ul className={styles.movieGrid}>
-              {results.map((movie: Media) => (
+              {list.map((movie: Media) => (
                 <li key={movie.id}>
                   <MovieCard movie={movie} />
                 </li>
               ))}
             </ul>
           )}
-          {results && results.length === 0 && (
-            <div className={styles.noResults}>
-              <p>No movies found. Try a different search term.</p>
+          {list && list.length === 0 && (
+            <div className={styles.noData}>
+              <p>{noDataMsg}</p>
             </div>
           )}
         </div>

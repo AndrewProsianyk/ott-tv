@@ -68,7 +68,7 @@ export default function MainMovieBlock({
             />
             <Button
               icon={isFavorite ? <CheckIcon /> : <PlusIcon />}
-              label={isFavorite ? "Added to list" : "Add to list"}
+              label={isFavorite ? "Added to favorite" : "Add to favorite"}
               variant="secondary"
               onClick={() => toggleFavorite(movie)}
             />

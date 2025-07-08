@@ -1,6 +1,7 @@
 import SearchForm from "../components/searchForm/SearchForm";
 import GridListSection from "../components/gridListSection/GridListSection";
 import { fetchMediaByQuery } from "../utils/fetchMedia";
+import PageContentWrap from "../components/pageContentWrap/PageContentWrap";
 
 export default async function SearchPage({
   searchParams,
@@ -16,7 +17,7 @@ export default async function SearchPage({
   }
 
   return (
-    <main className="pt-[200px]">
+    <PageContentWrap>
       <SearchForm />
 
       {!query ? (
@@ -32,8 +33,12 @@ export default async function SearchPage({
           No results found for <b>{query}</b>
         </p>
       ) : (
-        <GridListSection results={results} title="Search Results:" />
+        <GridListSection
+          list={results}
+          title="Search Results:"
+          noDataMsg="No movies found. Try a different search term."
+        />
       )}
-    </main>
+    </PageContentWrap>
   );
 }
